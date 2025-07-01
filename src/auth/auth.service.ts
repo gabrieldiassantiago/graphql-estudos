@@ -24,7 +24,7 @@ export class AuthService {
 
   async validate(email: string, password: string): Promise<User> {
     const user = await this.prisma.user.findUnique({ where: { email } });
-    if (!user) throw new UnauthorizedException('Usuário não encontrado');
+    if (!user) throw new UnauthorizedException('Erro ao fazer login, verifique suas informações novamente');
 
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) throw new UnauthorizedException('Senha inválida');

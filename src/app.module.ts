@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
     PostModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      context: ({ req, res }) => ({ req, res }),
       driver: ApolloDriver,
       autoSchemaFile: true,
       playground: true,
